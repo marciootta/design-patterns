@@ -1,6 +1,6 @@
 package aula3.impostos;
 
-public abstract class TemplateDeImpostoCondicional {
+public abstract class TemplateDeImpostoCondicional implements Imposto  {
 	public double calcula (Orcamento orcamento) {
 		if (deveUsarMaximaTaxacao(orcamento)) {
 			return calculaMaximaTaxacao(orcamento);
