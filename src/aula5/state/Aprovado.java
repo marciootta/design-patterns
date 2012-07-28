@@ -1,7 +1,11 @@
 package aula5.state;
 
 public class Aprovado implements EstadoDeUmOrcamento {
-
+	
+	private boolean jaDeuDesconto;
+	public Aprovado() {
+		jaDeuDesconto = false;
+	}
 	@Override
 	public void aprova(Orcamento orcamento) {
 		throw new RuntimeException("Orcamento ja esta aprovado");
@@ -24,6 +28,12 @@ public class Aprovado implements EstadoDeUmOrcamento {
 
 	@Override
 	public void aplicaDescontoExtra(Orcamento orcamento) {
-		orcamento.valor -= orcamento.valor * 0.02; 
+		if (!jaDeuDesconto) {
+			orcamento.valor -= orcamento.valor * 0.02;
+			jaDeuDesconto = true;
+		}
+		else {
+			throw new RuntimeException("Desconto ja foi concedido");
+		}
 	}
 }
