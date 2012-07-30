@@ -11,6 +11,15 @@ public class TestaFiltros {
 		FiltroMaior500k filtroMaior500k = new FiltroMaior500k(filtrosaldomenor100);
 		FiltroDataAbertura filtroDataAbertura = new FiltroDataAbertura(filtroMaior500k);
 		
+		List<Conta> contas = setupContas();
+		
+		List<Conta> resultante = filtroDataAbertura.filtra(contas);
+		for(Conta conta : resultante) {
+			System.out.println("titular: " + conta.getNomeTitular() + " - saldo: " + conta.getSaldo());
+		}
+	}
+
+	private static List<Conta> setupContas() {
 		List<Conta> contas = new ArrayList<Conta>();
 		Conta conta2 = new Conta("JOSE", 2005);
 		conta2.setDataAbertura(2012,Calendar.APRIL,01);
@@ -24,10 +33,6 @@ public class TestaFiltros {
 		contas.add(conta3);
 		contas.add(new Conta("RAFA NADAL", 520456));
 		contas.add(new Conta("POQUER PLAYER", -230));
-		
-		List<Conta> resultante = filtroDataAbertura.filtra(contas);
-		for(Conta conta : resultante) {
-			System.out.println("titular: " + conta.getNomeTitular() + " - saldo: " + conta.getSaldo());
-		}
+		return contas;
 	}
 }
